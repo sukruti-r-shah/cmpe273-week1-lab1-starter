@@ -1,26 +1,41 @@
 # CMPE 273 – Week 1 Lab 1: Your First Distributed System (Starter)
 
-This starter provides two implementation tracks:
-- `python-http/` (Flask + requests)
-- `go-http/` (net/http)
+## 1) Running both the services locally
+- **Service A** running on (port 8080): 
 
-Pick **one** track for Week 1.
+  ![My photo](images/service_a.png)
 
-## Lab Goal
-Build **two services** that communicate over the network:
-- **Service A** (port 8080): `/health`, `/echo?msg=...`
-- **Service B** (port 8081): `/health`, `/call-echo?msg=...` calls Service A
+- **Service B** running on (port 8081): 
 
-Minimum requirements:
-- Two independent processes
-- HTTP (or gRPC if you choose stretch)
-- Basic logging per request (service name, endpoint, status, latency)
-- Timeout handling in Service B
-- Demonstrate independent failure (stop A; B returns 503 and logs error)
+   ![My photo](images/service_b.png)
 
-## Deliverables
-1. Repo link
-2. README updates:
-   - how to run locally
-   - success + failure proof (curl output or screenshot)
-   - 1 short paragraph: “What makes this distributed?”
+
+## 2) Running **curl** commands for both the services
+
+   ![My photo](images/curl_success.png)
+
+   - ## **Service A** logs: 
+
+      ![My photo](images/service_a_success.png)
+
+   - ## **Service B** logs: 
+
+      ![My photo](images/service_b_success.png)
+
+
+## 3) **Service A** stopped
+
+   ![My photo](images/a_stopped.png)
+
+   - ## Running **curl** commands after service A is stopped
+
+      ![My photo](images/curl_fail.png)
+
+   - ## **Service B** logs:
+ 
+      ![My photo](images/b_fails.png)
+
+
+## 4) What makes this distributed?
+
+   - Both the services A and B are running independently and communicating through network, even when they are physically on the same machine. So, if we were to run these services on different machines, given that both the services can communicate through the network, the services would run the same way. This separation is what makes the services distributed.
